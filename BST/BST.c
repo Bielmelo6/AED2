@@ -40,7 +40,7 @@ Tree maior_valor(Tree tree){
     return higher;
 }
 
-//Remover valor da árvore.
+//Remoção de itens da árvore BST.
 Tree remover(Tree tree, int del){
     //caso 1: Árvore vazia
     if(tree == NULL){
@@ -52,21 +52,18 @@ Tree remover(Tree tree, int del){
         //caso 2: Sem filhos:
         if(tree->left == NULL && tree->right == NULL){
             free(tree);
-            printf("REMOVIDO!\n");
             return NULL;
         }
         //caso 3: Sem o filho da direita:
         if(tree->left != NULL && tree->right == NULL){
             Tree temp = tree->left;
             free(tree);
-            printf("REMOVIDO!\n");
             return temp;
         }
         //caso 4: Sem o filho da esquerda:
         if(tree->left == NULL && tree->right != NULL){
             Tree temp = tree->right;
             free(tree);
-            printf("REMOVIDO!\n");
             return temp;
         }
         //caso 5: Com os dois filhos:
@@ -74,7 +71,6 @@ Tree remover(Tree tree, int del){
             Tree higher = maior_valor(tree->left);
             tree->valor = higher->valor;
             tree->left = remover(tree->left, higher->valor);
-            printf("REMOVIDO!\n");
             return tree;
         }
     }
@@ -84,10 +80,6 @@ Tree remover(Tree tree, int del){
     else
         tree->right = remover(tree->right, del);
     return tree;
-}
-
-void boot(Tree* tree) {
-    tree = NULL;
 }
 
 //Printar ordenado no formato Pre order.
@@ -124,47 +116,13 @@ int soma(Tree tree){
     else
         return tree->valor + soma(tree->left) + soma(tree->right);
 }
-
-/*void ordenar_inorder(Tree tree, int value){
-    if(tree != NULL && value != 0){
-        ordenar_inorder(tree->left, value-1);
-        printf("%d \n", tree->valor);
-        ordenar_inorder(tree->right, value-1);
-        }
-}*/
-
-int mediana(Tree tree){
-    int aux;
-    if(tree == NULL)
-        return 0;
-    else{
-        printf("Tamanho: %d \n", tree->size);
-         //arvore impar
-        Tree media = tree;
-        if(tree->size%2 == 1){
-            aux = (tree->size + 1)/2;
-            //ordenar_inorder(media,aux);
-            printf("Ímpar: %d\n", media->valor);
-        } //arvore par
-        else{
-            aux = (tree->size)/2;
-            //ordenar_inorder(media,aux);
-            printf("Par: %d\n ", media->valor);
-        }
-            
-    }
-    return aux; 
-}
     
 int main(){
     
-    Tree teste;
-    boot(teste);
-    Tree higher;
-    boot(higher);
+    Tree teste = NULL;
+    Tree higher = NULL;
     
     while(1){
-        printf("Digite o número da ação que você quer executar: ");
         int opcao;
         scanf("%d", &opcao);
         int usuario;
@@ -172,40 +130,23 @@ int main(){
         switch(opcao)
         {
         case 1:
-        printf("Digite o valor que você quer inserir: ");
             scanf("%d", &usuario);
             printf("%d", usuario);
             teste = insert(teste, usuario);
             break;
         case 2:
-            printf("PRE ORDER:\n");
-            preorder(teste);
-            break;
-        case 3:
-            printf("IN ORDER:\n");
-            inorder(teste);
-            break;
-        case 4:
-            printf("POS ORDER:\n");
-            posorder(teste);
-            break;
-        case 5:
-            printf("SOMATÓRIO:\n");
-            printf("Valor do Somatório: %d\n", soma(teste));
-            break;
-        case 6:
-            printf("Posição da mediana: %d\n", mediana(teste));
-            break;
-        case 7:
-            higher = maior_valor(teste);
-            printf("Maior valor: %d\n", higher->valor);
-            break;
-        case 8:
-            printf("Qual valor você deseja remover?");
             scanf("%d", &removivel);
             teste = remover(teste, removivel);
             break;
-        case 20:
+        case 3:
+            printf("\nPRE ORDER:\n");
+            preorder(teste);
+            break;
+        case 7:
+            higher = maior_valor(teste);
+            printf("\nMaior valor: %d\n", higher->valor);
+            break;
+        case 99:
             exit(0);
         }
     }
