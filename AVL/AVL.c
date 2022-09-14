@@ -333,29 +333,29 @@ int main(){
     int parametro;
     
     while(1){
-        int opcao;
+	int opcao;
         scanf("%d", &opcao);
         int usuario;
         int removivel;
         switch(opcao)
         {
-        case 1:
-            scanf("%d", &usuario);
-            teste = insert(teste, usuario, &parametro);
-            break;
-        case 2:
-            scanf("%d", &removivel);
-            teste = remover(teste, removivel, &parametro);
-            break;
-        case 3:
-            printf("ALTURA: %d\n", height(teste));
-            break;
-        case 4:
-            printf("\nPRE ORDER:\n");
-            preorder(teste);
-            break;
-        case 99:
-            exit(0);
+        	case 1:
+            		scanf("%d", &usuario);
+            		teste = insert(teste, usuario, &parametro);
+            		break;
+        	case 2:
+            		scanf("%d", &removivel);
+            		teste = remover(teste, removivel, &parametro);
+            		break;
+        	case 3:
+            		printf("ALTURA: %d\n", height(teste));
+            		break;
+        	case 4:
+            		printf("\nPRE ORDER:\n");
+            		preorder(teste);
+            		break;
+        	case 99:
+            		exit(0);
         }
     }
     return 0;
