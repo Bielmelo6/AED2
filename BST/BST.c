@@ -31,6 +31,13 @@ Tree insert(Tree raiz, int ins){
     return raiz;
 }
 
+//Descobrir altura da árvore
+int height(Tree tree) {
+	if(tree == NULL) {
+		return 0;
+	}
+	return 1 + compare(height(tree->right), height(tree->left));
+
 //Descobrir maior valor da árvore.
 Tree maior_valor(Tree tree){
     Tree higher = tree;
@@ -129,25 +136,24 @@ int main(){
         int removivel;
         switch(opcao)
         {
-        case 1:
-            scanf("%d", &usuario);
-            printf("%d", usuario);
-            teste = insert(teste, usuario);
-            break;
-        case 2:
-            scanf("%d", &removivel);
-            teste = remover(teste, removivel);
-            break;
-        case 3:
-            printf("\nPRE ORDER:\n");
-            preorder(teste);
-            break;
-        case 7:
-            higher = maior_valor(teste);
-            printf("\nMaior valor: %d\n", higher->valor);
-            break;
-        case 99:
-            exit(0);
+        	case 1:
+            		scanf("%d", &usuario);
+            		printf("%d", usuario);
+            		teste = insert(teste, usuario);
+            		break;
+        	case 2:
+        		scanf("%d", &removivel);
+            		teste = remover(teste, removivel);
+            		break;
+        	case 3:
+        		printf("ALTURA: %d\n", height(teste));
+        		break;
+        	case 4:
+            		printf("\nPRE ORDER:\n");
+            		preorder(teste);
+            		break;
+        	case 99:
+            		exit(0);
         }
     }
     return 0;

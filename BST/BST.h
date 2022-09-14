@@ -12,7 +12,7 @@ typedef No* Tree;
 Tree insert(Tree raiz, int ins);
 Tree remover(Tree raiz, int del);
 Tree maior_valor(Tree tree);
-void boot(Tree* tree);
+int height(Tree tree);
 void preorder(Tree tree);
 void inorder(Tree tree);
 void posorder(Tree tree);
